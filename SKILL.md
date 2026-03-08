@@ -4,7 +4,7 @@ description: "Use this skill when the user asks to 'check if a token team is dum
 license: MIT
 metadata:
   author: JN-Bot666
-  version: "1.0.0"
+  version: "1.1.0"
   homepage: "https://github.com/JN-Bot666/dump-detective"
   chain: BSC (chainId: 56)
   apis: Binance Web3 Public API
@@ -88,16 +88,27 @@ GET https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/pu
 
 ---
 
-### Step 5 — 创始人钱包持仓（query-address-info）⭐ 最关键
+### Step 5 — 创始人钱包持仓（自动化）⭐ 最关键
 
-```http
-GET https://web3.binance.com/bapi/defi/v3/public/wallet-direct/buw/wallet/address/pnl/active-position-list
-    ?address=<creator_wallet_address>&chainId=56
+**全自动流程（无需手动提供部署者地址）：**
+
+```bash
+python3 scripts/dump_detective_step5.py <contract_address>
+# 脚本路径: workspace-coder/scripts/dump_detective_step5.py
 ```
 
-**判断：** 创始人钱包中该代币是否仍在活跃持仓。若不在 → 🔴 已出货（吸烟枪证据）
+**脚本内部逻辑：**
+1. 爬取 `https://bscscan.com/address/<contract>` 解析 "Contract Creator" 字段 → 获得部署者地址
+2. 调用 BSC RPC `eth_call` (balanceOf) → 直接查部署者钱包的代币余额
+3. 调用 BSC RPC `eth_getBalance` → 查部署者 BNB 余额（确认地址是否仍活跃）
+4. 尝试 Binance Web3 API 补充（`/v3/.../active-position-list`）— 部分地址可能返回 null
 
-> ⚠️ 需要用户提供或自行查找创始人钱包地址（可从链上浏览器获取）
+**判断规则：**
+- 余额 = 0 → 🔴 已完全出货（吸烟枪证据）
+- 余额极少（< 1000）→ 🔴 基本出货
+- 仍持有大量 → 🟡 未出货，需结合总供应量评估比例
+
+> ℹ️ Binance API `devHoldingPercent=null` 时不影响结论，RPC 直查更准确
 
 ---
 
@@ -119,7 +130,7 @@ GET https://web3.binance.com/bapi/defi/v3/public/wallet-direct/buw/wallet/addres
 
 ## 完整演示案例
 
-参见仓库 README.md 及演示截图
+参见仓库内：`demo_log.md`（完整演示日志）
 分析对象：Baby Doge Coin (BabyDoge) → 评级：🟡 MEDIUM-HIGH RISK
 
 ---
